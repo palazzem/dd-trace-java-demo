@@ -1,0 +1,52 @@
+buildscript {
+  ext {
+    springBootVersion = '1.5.7.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+plugins {
+  id 'io.franzbecker.gradle-lombok' version '1.10'
+  id 'java'
+}
+
+apply plugin: 'org.springframework.boot'
+
+group = 'com.datadog.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+
+ext {
+  springCloudVersion = 'Dalston.SR3'
+}
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('org.springframework.boot:spring-boot-starter-data-jpa')
+  compile('org.springframework.boot:spring-boot-starter-web')
+
+  compile('org.springframework.cloud:spring-cloud-starter-openfeign')
+
+  compile group: 'io.github.openfeign', name: 'feign-jackson', version: '9.5.1'
+  compile group: 'io.github.openfeign', name: 'feign-okhttp', version: '9.5.1'
+
+  compile('com.h2database:h2')
+
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+  }
+}
