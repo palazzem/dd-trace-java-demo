@@ -30,7 +30,7 @@ public class PairingController {
 
     client =
         Feign.builder()
-            .client(new OkHttpClient(new okhttp3.OkHttpClient().newBuilder().build()))
+            .client(new OkHttpClient())
             .decoder(new JacksonDecoder())
             .target(TasteClient.class, "http://localhost:5001");
   }

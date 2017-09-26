@@ -1,0 +1,15 @@
+version: '3'
+services:
+  agent:
+    image: "datadog/docker-dd-agent:latest"
+    environment:
+      - DD_API_KEY
+    ports:
+      - "8126:8126"
+  web:
+    build: .
+    command: /usr/src/demo-app/build/install/dd-trace-java-demo/bin/dd-trace-java-demo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - agent
