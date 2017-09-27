@@ -32,7 +32,7 @@ public class PairingController {
         Feign.builder()
             .client(new OkHttpClient())
             .decoder(new JacksonDecoder())
-            .target(TasteClient.class, "http://localhost:5001");
+            .target(TasteClient.class, "http://taster:5001");
   }
 
   @RequestMapping("/pair/beer")

@@ -4,12 +4,20 @@ services:
     image: "datadog/docker-dd-agent:latest"
     environment:
       - DD_API_KEY
-    ports:
-      - "8126:8126"
   web:
     build: .
-    command: /usr/src/demo-app/build/install/dd-trace-java-demo/bin/dd-trace-java-demo
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - agent
+      - taster
+  taster:
+    environment:
+      - FLASK_APP=taster.py
+      - FLASK_DEBUG=1
+    build: ./taster
+    command: flask run --port=5001 --host=0.0.0.0
+    volumes:
+      - "./taster:/app"
     depends_on:
       - agent
