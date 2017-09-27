@@ -6,6 +6,6 @@ import feign.RequestLine;
 import java.util.List;
 
 public interface TasteClient {
-  @RequestLine("GET /taste?beer={beer}&donuts={donuts}")
+  @RequestLine("GET /match?main={beer}&items={donuts}")
   JsonNode findPairing(@Param("beer") String beer, @Param("donuts") List<String> donuts);
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/beers")
+@RequestMapping("/users")
 public class BeerController {
 
   private final BeerRepository repo;

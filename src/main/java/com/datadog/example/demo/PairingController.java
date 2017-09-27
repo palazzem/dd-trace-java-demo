@@ -32,10 +32,10 @@ public class PairingController {
         Feign.builder()
             .client(new OkHttpClient())
             .decoder(new JacksonDecoder())
-            .target(TasteClient.class, "http://taster:5001");
+            .target(TasteClient.class, "http://suggestions.service.us-east-1.consul:5001");
   }
 
-  @RequestMapping("/pair/beer")
+  @RequestMapping("/suggestions/user")
   public @ResponseBody ResponseEntity<Map<String, Object>> pair(@RequestParam("name") String name) {
     List<Beer> byName = beerRepo.findByName(name);
     if (byName.isEmpty()) {
