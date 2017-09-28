@@ -11,10 +11,10 @@ app = Flask(__name__)
 
 # trace the Flask application
 tracer.configure(hostname='agent')
-TraceMiddleware(app, tracer, service="taster")
+TraceMiddleware(app, tracer, service="suggestions-api")
 
 
-@app.route("/taste")
+@app.route("/match")
 def taste():
     # continue the trace
     trace_id = request.headers.get("X-Datadog-Trace-Id")
@@ -26,8 +26,8 @@ def taste():
 
     # send the remaining candidates to our taster and pick the best
     matches = []
-    beer = request.args.get("beer")
-    candidates = request.args.getlist("donuts")
+    beer = request.args.get("main")
+    candidates = request.args.getlist("items")
 
     for candidate in candidates:
         score = random.randint(1, 10)
