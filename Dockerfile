@@ -1,9 +1,9 @@
 FROM openjdk:8-jdk
 LABEL maintainer="Datadog Inc. <tyler@datadoghq.com>"
 
-COPY . /usr/src/demo-app
-WORKDIR /usr/src/demo-app
+COPY . /usr/src/dd-trace-java-demo
+WORKDIR /usr/src/dd-trace-java-demo
 
 RUN ./gradlew installDist
 
-CMD /usr/src/demo-app/build/install/demo-app/bin/demo-app
+CMD /usr/src/dd-trace-java-demo/build/install/dd-trace-java-demo/bin/dd-trace-java-demo
